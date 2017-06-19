@@ -2,7 +2,10 @@
 
 first_metanav = chrome['nav']['metanav'][0]['label']
 if hasattr(first_metanav, 'children'):
-  user_menu_text = first_metanav.children
+  try:
+    user_menu_text = first_metanav.children[1]
+  except:
+    user_menu_text = first_metanav.children
 else:
   user_menu_text = first_metanav
 
@@ -22,13 +25,13 @@ else:
       <!--! Set the viewport so responsive feature works on mobile devices -->
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" type="text/css"
-          href="${href.chrome('blueflat/css/bootstrap.min.css')}" />
+          href="${href.chrome('blackflat/css/bootstrap.min.css')}" />
       <!-- Optional theme -->
       <link rel="stylesheet" type="text/css"
-            href="${req.base_path}/chrome/blueflat/css/bootstrap-flat.css" />
+            href="${req.base_path}/chrome/blackflat/css/bootstrap-flat.css" />
 
       <link rel="stylesheet" type="text/css"
-            href="${req.base_path}/chrome/blueflat/css/blueflat.css" />
+            href="${req.base_path}/chrome/blackflat/css/blackflat.css" />
       <script src="${href.chrome('theme/js/bootstrap.min.js')}"></script>
 
       <script type="text/javascript">
@@ -73,18 +76,19 @@ else:
                 </div>
 
                  <div class="collapse navbar-collapse">
-                  <div class="btn-group pull-right" id="metanav">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                      ${user_menu_text}
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" py:if="chrome.nav['metanav']">
-                      <li py:for="idx, item in  enumerate(chrome.nav['metanav'])"
-                          class="${classes(first_last(idx, chrome.nav['metanav']), active=item.active)}">${item.label}</li>
-                    </ul>
-                  </div>
+                  <ul class="nav navbar-nav navbar-right" id="metanav">
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">
+                        ${user_menu_text}
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" py:if="chrome.nav['metanav']">
+                        <li py:for="idx, item in  enumerate(chrome.nav['metanav'])"
+                            class="${classes(first_last(idx, chrome.nav['metanav']), active=item.active)}">${item.label}</li>
+                      </ul>
+                    </li>
+                  </ul>
 
-                  <div >
                     <ul class="nav navbar-nav" py:if="chrome.nav['mainnav']">
                       <li py:for="idx, item in enumerate(chrome.nav['mainnav'])"
                           class="${classes(first_last(idx, chrome.nav['mainnav']), active=item.active)}">${item.label}
@@ -97,9 +101,8 @@ else:
                         </form>
                       </li>
                     </ul>
-                  </div> <!-- /.nav-collapse -->
+                </div> <!-- /.nav-collapse -->
 
-                </div>
 
               </div> <!-- /navbar-inner -->
             </div>

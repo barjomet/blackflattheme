@@ -11,10 +11,10 @@
 from setuptools import setup
 
 setup(
-    name='BlueFlatTheme',
+    name='BlackFlatTheme',
     version='1.0',
-    packages=['blueflattheme'],
-    package_data={'blueflattheme': ['htdocs/css/*.css',
+    packages=['blackflattheme'],
+    package_data={'blackflattheme': ['htdocs/css/*.css',
                                      'htdocs/fonts/*',
                                      'htdocs/js/*.js',
                                      'htdocs/*.png',
@@ -23,17 +23,17 @@ setup(
     author_email='',
     maintainer='Cinc',
     maintainer_email="",
-    description="A responsive, flat, blue theme using Bootstrap 3.3.1.",
+    description="A responsive, flat, black theme using Bootstrap 3.3.1.",
     license="BSD",
     keywords="trac plugin theme",
-    url="http://trac-hacks.org/wiki/BlueFlatTheme",
+    url="https://github.com/barjomet/blackflattheme",
     classifiers=[
         'Framework :: Trac',
     ],
     install_requires=['TracThemeEngine'],
     entry_points = {
         'trac.plugins': [
-            'blueflattheme.theme = blueflattheme.theme',
+            'blackflattheme.theme = blackflattheme.theme',
         ]
     }
 )

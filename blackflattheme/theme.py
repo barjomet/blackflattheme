@@ -15,15 +15,15 @@ from genshi.filters.transform import Transformer
 from themeengine.api import ThemeBase
 
 
-class BlueFlatTheme(ThemeBase):
-    """A responsive, flat, blue theme using Bootstrap 3.3.1."""
+class BlackFlatTheme(ThemeBase):
+    """A responsive, flat, black theme using Bootstrap 3.3.1."""
 
     implements(ITemplateStreamFilter, ITemplateProvider)
 
     screenshot = True
     template = htdocs = True
 
-    replace_jquery = BoolOption("blue-flat-theme", "replace_jquery", True, doc="Set to false if the theme plugin "
+    replace_jquery = BoolOption("black-flat-theme", "replace_jquery", True, doc="Set to false if the theme plugin "
                                                                                "should not replace Tracs jQuery with "
                                                                                "the version shipping with the plugin "
                                                                                "(V1.11.2). Note that Bootstrap V3.3.1 "
@@ -37,10 +37,10 @@ class BlueFlatTheme(ThemeBase):
             attrs = event[1][1]
             if attrs.get(name):
                 if attrs.get(name).endswith("common/js/jquery.js"):
-                    return attrs.get(name) .replace("common/js/jquery.js", 'blueflat/js/jquery-1.11.2.min.js')
+                    return attrs.get(name) .replace("common/js/jquery.js", 'blackflat/js/jquery-1.11.2.min.js')
                 elif attrs.get(name) and attrs.get(name).endswith("common/js/keyboard_nav.js"):
                     #keyboard_nav.js uses function live() which was removed with jQuery 1.9. Use a fixed script here
-                    return attrs.get(name) .replace("common/js/keyboard_nav.js", 'blueflat/js/keyboard_nav.js')
+                    return attrs.get(name) .replace("common/js/keyboard_nav.js", 'blackflat/js/keyboard_nav.js')
             return attrs.get(name)
 
         if self.replace_jquery:
@@ -55,4 +55,4 @@ class BlueFlatTheme(ThemeBase):
 
     def get_htdocs_dirs(self):
         from pkg_resources import resource_filename
-        return [('blueflat', resource_filename(__name__, 'htdocs'))]
+        return [('blackflat', resource_filename(__name__, 'htdocs'))]
